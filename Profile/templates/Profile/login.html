@@ -1,0 +1,92 @@
+<!--
+    Author: JAshMe
+    CSE, MNNIT Allahabad
+ -->
+
+{% extends "Profile/base_head.html" %}
+
+{% block title %}Login{% endblock %}
+
+{% block addLinks %}
+    {% load staticfiles %}
+    <link rel="stylesheet"  type="text/css" href="{% static "Profile/login_register.css" %}" />
+{% endblock %}
+
+{% block button %}
+    <div class="col-md-2">
+        <div class="card" id="heading-container">
+            <div class="card-body" id="heading">
+                Login
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block body %}
+    <div class="row" id="login-container">
+        <div class="offset-md-4 col-md-4">
+            <div class="card">
+                <div class="card-header" id ="login-header">Please Fill Your Credentials</div>
+                <div class="card-body form-container">
+                    {% if status == '1' %}
+                        <div class="success-panel" id="logout-msg">You have successfully Logged Out!!</div>
+                    {% elif status == '2' %}
+                        <div class="error-panel" id="login-msg">Please Log In to Continue!</div>
+                    {% endif %}
+                    {% if errors %}
+                    <div class="error-panel">{{ errors }}</div>
+                    {% endif %}
+                    <form class="form" action="#" method="post">
+                        {% csrf_token %}
+                        <div class="error-panel">{{ form.non_field_errors|striptags }}</div>
+                        <div class="error-panel">{{ form.username.errors|striptags }}</div>
+                        <div class="input-group">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text">
+                                    <i class="fa fa-user fa-fw" aria-hidden="true"></i>
+                                </span>
+                            </div>
+                            {{ form.username }}
+                        </div>
+                        <br>
+                        <div class="error-panel">{{ form.password.errors|striptags }}</div>
+                        <div class="input-group">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text">
+                                    <i class="fa fa-key fa-fw" aria-hidden="true"></i>
+                                </span>
+                            </div>
+                            {{ form.password }}
+                        </div>
+                        <br>
+                        <div class="form-group">
+                            <label class="form-check-label" for="forgot">
+                                <input id="rem" type="checkbox" class="form-check-input" name="rem" value="yes">
+                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Remember me
+                            </label>
+                        </div>
+                        <button id="login" type="submit" name="login" class="btn col-md-12"><i class="fa fa-sign-in"></i> Login</button>
+                    </form>
+                    <br>
+                    <a href="#">Forgot Password??</a>
+                    <p align="center" style="margin-top: 10px;">New User?? <a href="{% url "Rhythmica:Profile:signUpPage" %}">Sign Up Now.</a></p>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+
+
+{% block javascript %}
+    <script>
+        $(function () {
+
+            $("#off-div").removeClass('offset-md-3');
+            $("#head").addClass('small-head');
+            $("#sub-head").addClass('small-subhead');
+            $("#logo").addClass('small-logo');
+            $("#head-container").removeClass('col-md-9').addClass('col-md-6');
+        });
+    </script>
+{% endblock %}

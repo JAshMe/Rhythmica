@@ -1,0 +1,91 @@
+{% extends 'Rhythmica/base_pro.html' %}
+
+{# The form comes from the CreateView class and after its submited, it stores the object in database #}
+
+{% block title %}
+        Add Album
+{% endblock %}
+
+{% block add_active %}
+    {% if role == 'Add' %}
+        active
+    {% endif %}
+{% endblock %}
+
+{% block add_static %}
+    {% load staticfiles %}
+    <link rel="stylesheet" type="text/css" href="{% static 'Rhythmica/album_form.css'%}" />
+{% endblock %}
+
+{% block body %}
+
+
+    <div class="container">
+    <div class="row">
+        <div class="col-md-7 col-sm-9 form-div">
+            <div class="card">
+                <div class=" card-header" align="center">
+                    {{ role }} Album
+                </div>
+                <div class="card-body" style="padding: 30px;">
+                    <form class="form-horizontal" method="post" enctype="multipart/form-data">
+                        {% csrf_token %}
+                        <div class="error-panel">{{ form.non_field_errors }}</div>
+                        <div class="error-panel">{{ error }}</div>
+                        <div class="input-group">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text">
+                                    <i class="fa fa-user-circle"></i>&nbsp; Artist:
+                                </span>
+                            </div>
+                            {{ form.artist }}&nbsp;<span class="asteriskField"> *</span>
+                        </div>
+                        <br>
+                        <div class="input-group">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text">
+                                    <i class="fa fa-database"></i>&nbsp; Title:
+                                </span>
+                            </div>
+                            {{ form.albumTitle }}&nbsp;<span class="asteriskField"> *</span>
+                        </div>
+                        <br>
+                        <div class="input-group">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text">
+                                    Genre:
+                                </span>
+                            </div>
+                            {{ form.genre }}
+                        </div>
+                        <br>
+                        <div class="input-group">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text">
+                                    Album Logo:
+                                </span>
+                            </div>
+                           <div class="custom-file">
+                                {{ form.albumLogo }} &nbsp;<span class="asteriskField">* </span>
+                                <label class="custom-file-label" for="album-logo" id="file-div">Choose File ..</label>
+                           </div>
+                        </div>
+                        <br>
+                        <button type="submit" class="btn submit-btn offset-md-4 col-md-4">
+                            {% if role == "Add" %}
+                                <i class="fa fa-plus-circle"></i> {{ role }}
+                            {% else %}
+                                <i class="fa fa-check"></i> {{ role }}
+                            {% endif %}
+
+                        </button>
+
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+    <script src="{% static "Rhythmica/scripts/fileInput.js" %}"></script>
+
+{% endblock %}

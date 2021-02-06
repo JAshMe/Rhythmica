@@ -1,0 +1,142 @@
+<!--
+    Author: JAshMe
+    CSE, MNNIT Allahabad
+ -->
+
+{% extends "Profile/base_head.html" %}
+
+{% block title %}New User{% endblock %}
+
+{% block addLinks %}
+    {% load staticfiles %}
+    <link rel="stylesheet"  type="text/css" href="{% static "Profile/login_register.css" %}" />
+    <link rel="stylesheet"  type="text/css" href="{% static "Profile/register.css" %}" />
+
+{% endblock %}
+
+{% block button %}
+    <div class="col-md-3">
+        <div class="card" id="heading-container">
+            <div class="card-body" id="heading">
+                Register
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block body %}
+    <div class="row" id="login-container">
+        <div class="offset-md-3 col-md-6">
+            <div class="card">
+                <div class="card-header" id ="login-header">Please Fill your Details</div>
+                <div class="card-body form-container">
+                    <form class="form" action="#" method="post">
+                        {% csrf_token %}
+                        <div class="error-panel">{{ form.non_field_errors|striptags }}</div>
+                        <div class="error-panel">{{ form.full_name.errors|striptags }}</div>
+                        <div class="input-group">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text">
+                                    <i class="fa fa-id-card fa-fw" aria-hidden="true"></i>
+                                </span>
+                            </div>
+                            {{ form.full_name }}
+{#                            <input id="full-name" type="text" class="form-control" name="fullName" placeholder="Enter your Full Name" autofocus required>#}
+                        </div>
+                        <br>
+                        <div class="error-panel">{{form.email.errors|striptags}}</div>
+                        <div class="input-group">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text">
+                                    <i class="fa fa-envelope fa-fw" aria-hidden="true"></i>
+                                </span>
+                            </div>
+{#                            <input id="email" type="email" class="form-control" name="email" placeholder="Enter your Email" required>#}
+                            {{ form.email }}
+                        </div>
+                        <br>
+                        <div class="error-panel">{{ form.dob.errors|striptags }}</div>
+                        <div class="input-group">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text">
+                                    <i class="fa fa-calendar fa-fw" aria-hidden="true"></i>
+                                </span>
+                            </div>
+{#                            <input id="dob" type="date" class="form-control" name="dob" placeholder="Enter your DOB">#}
+                            {{ form.dob }}
+                        </div>
+                        <br>
+                        <div class="error-panel">{{ form.username.errors|striptags }}</div>
+                        <div class="input-group">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text">
+                                    <i class="fa fa-user fa-fw" aria-hidden="true"></i>
+                                </span>
+                            </div>
+{#                            <input id="username" type="text" class="form-control" name="username" placeholder="Enter your Username" required>#}
+                            {{ form.username }}
+                        </div>
+                        <br>
+                        <div class="error-panel">{{ form.user.password1.errors|striptags }}</div>
+                        <div class="input-group">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text">
+                                    <i class="fa fa-key fa-fw" aria-hidden="true"></i>
+                                </span>
+                            </div>
+                            <input id="pass" type="password" class="form-control" name="{{ form.password1.html_name }}" value="" placeholder="Enter your Password" required>
+                        </div>
+                        <br>
+                        <div class="error-panel">{{ form.password2.errors|striptags }}</div>
+                        <div class="input-group">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text">
+                                    <i class="fa fa-lock fa-fw" aria-hidden="true"></i>
+                                </span>
+                            </div>
+                            <input id="confPass" type="password" class="form-control" name="{{ form.password2.html_name }}"  value="" placeholder="Confirm your Password" required>
+                        </div>
+                        <br>
+                        <div class="error-panel">{{ form.country.errors|striptags }}</div>
+                        <div class="input-group">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text">
+                                    <i class="fa fa-globe fa-fw" aria-hidden="true"></i>
+                                </span>
+                            </div>
+                            {{ form.country }}
+                        </div>
+                        <br>
+                        <div class="error-panel">{{ form.lang.errors|striptags }}</div>
+                        <div class="input-group">
+{#                            <input id="lang" type="text" class="form-control" name="lang" placeholder="Your Main Language" required>#}
+                            <div class="input-group-prepend">
+                                <span class="input-group-text">
+                                    <i class="fa fa-language fa-fw" aria-hidden="true"></i>
+                                </span>
+                            </div>
+                            {{ form.lang }}
+                        </div>
+                        <br>
+                        <button id="register" type="submit" name="register" class="btn col-md-12"><i class="fa fa-user-plus"></i> Sign Up</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+
+
+{% block javascript %}
+    <script>
+        $(function () {
+
+            $("#off-div").removeClass('offset-md-3');
+            $("#head").addClass('small-head');
+            $("#sub-head").addClass('small-subhead');
+            $("#logo").addClass('small-logo');
+            $("#head-container").removeClass('col-md-9').addClass('col-md-6');
+        });
+    </script>
+{% endblock %}

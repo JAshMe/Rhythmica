@@ -1,0 +1,65 @@
+body{
+    background: grey url("images/Music_guitar1.jpg");
+    background-size: cover;
+}
+.thumbnails{
+
+    width: 350px;
+    float: left;
+    margin-left:5%;
+    border: black solid 5px;
+    background-color: #ced4da;
+}
+.thumbnails:hover{
+    background-color: rgb(34,34,34);
+}
+.thumbnails:hover .text{
+    color: white;
+}
+.logo{
+    width: 100%;
+    border: black solid 2px;
+}
+.album-title{
+    color: rgb(34,34,34);
+    padding-top:5%;
+    font-size: 28px;
+    font-family: 'Cinzel', serif;
+    overflow-x: auto;
+}
+.album-artist{
+    color: black;
+    font-size: 22px;
+    font-family: 'Advent Pro',sans-serif;
+    text-align: right;
+}
+.num-songs{
+    color: black;
+    font-size: 22px;
+    font-family: 'Slabo 27px',serif;
+    text-align: left;
+}
+a{
+    color: black;
+
+}
+a:hover{
+    text-decoration: none;
+    color: black;
+
+}
+.negate{
+    margin-top:10%;
+    text-align: center;
+    color: white;
+    background-color: #222222;
+}
+@media screen and (max-width: 423px)
+{
+
+    .thumbnails{
+        width:100%;
+        margin-left:0;
+    }
+
+}

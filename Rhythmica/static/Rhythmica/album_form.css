@@ -1,0 +1,18 @@
+body{
+    background: #4e555b url("images/microphone_music1.jpg");
+    background-size: cover;
+}
+.form-div{
+    margin-top: 100px;
+    font-family: 'Cairo',sans-serif;
+}
+h2{
+    font-family: 'Cairo',sans-serif;
+    padding: 0;
+}
+#file-div,#album-logo{
+    cursor: pointer;
+}
+.card-header{
+    font-size: 25px;
+}

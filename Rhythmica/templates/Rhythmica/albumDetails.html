@@ -1,0 +1,204 @@
+{% extends 'Rhythmica/base_pro.html' %}
+
+{% block title %} {{ album.albumTitle }} {% endblock %}
+{% block album_active %}
+{% endblock %}
+
+{% load staticfiles %}
+{% block add_static %}
+    <link rel="stylesheet" type="text/css" href="{% static "Rhythmica/album_details.css" %}" />
+{% endblock %}
+
+{% block body %}
+<body>
+    <div class="container-fluid body">
+        <div class="col-md-3 col-sm-6 position-fixed">
+            <div class="row">
+                <div class="col-md-11 col-sm-8">
+                    <div class="card">
+                        <div class="card-body logo-div">
+                            {# Showing the image stored in media folder #}
+                            <img id='logo' src="{{ album.albumLogo.url }}" alt="Album Logo">
+                            <div id="album-title">{{ album.albumTitle }}</div>
+                            <div id="album-artist">{{ album.artist }}</div>
+                            <div id="album-genre">{{ album.genre }}</div>
+                            <form action="{% url 'Rhythmica:del_album' album.id %}" method="post">
+                                {% csrf_token %}
+                                <button type="submit" class="btn btn-default mod-album">
+                                    <span class="fa fa-trash"></span>
+                                </button>
+                                <a href="{% url 'Rhythmica:upd_album' pk=album.id %}">
+                                <button type="button" class="btn btn-default mod-album upd-btn">
+                                    <span class="fa fa-pencil"></span>
+                                </button>
+                            </a>
+                            </form>
+
+                            <!--Modal-->
+{#                                    {% include 'music/modal.html' %}#}
+
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="offset-md-3 offset-sm-4 col-md-9 col-sm-6">
+            <div class="row">
+                <div class="col-md-12 menu position-fixed">
+                    <button class="btn btn-outline-dark" data-toggle="modal" data-target="#addSongModal">Add a New Song</button>
+                    <button class="btn btn-outline-dark offset-md-5">Delete Marked Songs</button>
+                    <hr style="color: black;margin-bottom:0">
+                </div>
+            </div>
+        {% if album.songs.all %}
+            <div class="songs-listing">
+                <div class="table-responsive position-fixed head-table">
+                    <table class="table table-hover heading">
+                        <thead align="center">
+                            <tr class="active">
+                                <th width="4%">#</th>
+                                <th width="2%"></th>
+                                <th width="37%">Name</th>
+                                <th width="7%">Format</th>
+                                <th width="8%">Duration</th>
+                                <th width="11%">Play</th>
+                                <th width="7%">Favorite</th>
+                                <th width="14%">Download</th>
+                            </tr>
+                        </thead>
+                    </table>
+                </div>
+                <div class="table-responsive listing">
+                    <table class="table table-hover">
+                        <tbody>
+                        {% for song in album.songs.all %}
+                                <tr class="active">
+                                    <td width="4%">{{ forloop.counter }}</td>
+                                            <td width="2%"><input type="checkbox" value="{{ song.id }}" name="{{ song.id }}"></td>
+                                            <td width="38%">{{ song.songTitle }}</td>
+                                            <td width="8%">{{ song.songFormat }}</td>
+                                            <td width="9%">{{ song.songDuration }}</td>
+                                    <td width="11%"><button class="btn btn-outline-dark download-btn" style="width:110%">Play</button></td>
+                                    {% load staticfiles %}
+                                    <td class="fav_cell" width="9%">&nbsp;&nbsp;
+                                        {% if song.is_favorite %}
+                                            <img src="{% static 'Rhythmica/images/fav_star_ico.png' %}" class="fav_icon fav">
+                                        {% else %}
+                                            <img src="{% static 'Rhythmica/images/unfav_star_ico.png' %}" class="fav_icon unfav">
+                                        {% endif %}
+                                    </td>
+                                    <td width="13%">
+                                        <button class="btn btn-outline-dark download-btn" style="width: 108%">Download</button>
+                                    </td>
+                                </tr>
+
+                            {% endfor %}
+        {% else %}
+            <div class="card negate">
+                <div class="card-body">
+                    <h3>No Songs in Album!!</h3>
+                </div>
+            </div>
+        {% endif %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- The Modal -->
+    <div class="modal fade" id="addSongModal">
+    <div class="modal-dialog">
+    <div class="modal-content">
+
+        <!-- Modal Header -->
+        <div class="modal-header">
+        <h4 class="modal-title"><i class="fa fa-plus"></i> &nbsp;Add Song</h4>
+        <button type="button" class="close" data-dismiss="modal" style="color: white">&times;</button>
+        </div>
+
+        <!-- Modal body -->
+        <div class="modal-body">
+            <div class="container-fluid">
+                <form action="{% url "Rhythmica:add_song" %}" method="post" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    <div class="error-panel">{{ addSongForm.non_field_errors }}</div>
+                    <div class="input-group">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text">
+                               <i class="fa fa-database"></i> &nbsp;Album:
+                            </span>
+                        </div>
+                        <input type="text" class="form-control" id="album" name="album_name" readonly value="{{ album.albumTitle }}">
+                    </div>
+                    <input type="hidden" name="album_id" value="{{ album.id }}">
+                    <br>
+                    <div class="error-panel">{{ addSongForm.songUrl.errors }}</div>
+                    <div class="input-group">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text">
+                               <i class="fa fa-music"></i> &nbsp;Upload Song:
+                            </span>
+                        </div>
+                        <div class="custom-file">
+                            {{ addSongForm.songUrl }} &nbsp;<span class="asteriskField">* </span>
+                            <label class="custom-file-label" for="album-logo" id="file-label" style="overflow-x: hidden">Choose Song ..</label>
+                        </div>
+                    </div>
+                    <br>
+                    <div class="error-panel">{{ addSongForm.songLogo.errors }}</div>
+                    <div class="input-group">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text">
+                               <i class="fa fa-image"></i> &nbsp;Upload Logo:
+                            </span>
+                        </div>
+                        <div class="custom-file">
+                            {{ addSongForm.songLogo }}
+                            <label class="custom-file-label" for="album-logo" id="logo-label" style="overflow-x: hidden">Choose Logo ..</label>
+                        </div>
+                    </div>
+                    <br>
+                    <div>
+                        <button class="btn btn-dark offset-md-4 col-md-4" type="submit"><i class="fa fa-upload"></i> &nbsp;Upload</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    </div>
+    </div>
+
+{#    {% if error_message %}#}
+{#        <h3>{{ error_message }}</h3>#}
+{#    {% endif %}#}
+
+{#    <form action="{% url "music:favorites" album.id %}" method="post">#}
+{#        {% csrf_token %}#}
+{#        {% load staticfiles %}#}
+{#        {% for song in album.song_set.all %}#}
+{#            {{ test }}#}
+{#            <input id="song{{ forloop.counter }}" type="radio" name="favSong" value="{{ song.id }}">#}
+{#            <label for="song{{ forloop.counter }}">{{ song.songTitle }}#}
+{#            {% if song.is_favorite %}#}
+{#                <img src="http://usdb.animux.de/images/star.png">#}
+{#            {% endif %}#}
+{#            </label>#}
+{#            <br>#}
+{#        {% endfor %}#}
+{#        <br>#}
+{#        <input type="submit" value="Add to favorites!!">#}
+{#    </form>#}
+</body>
+    <script>
+
+        $(".fav_cell").on('click','.fav',function(){
+            $(this).parent().html("&nbsp;&nbsp; <img src=\"{% static 'Rhythmica/images/unfav_star_ico.png' %}\" class=\"fav_icon unfav\">");
+        }).on('click','.unfav',function(){
+           $(this).parent().html("&nbsp;&nbsp; <img src=\"{% static 'Rhythmica/images/fav_star_ico.png' %}\" class=\"fav_icon fav\">");
+        });
+    </script>
+    {% load staticfiles %}
+    <script src="{% static "Rhythmica/scripts/fileInput.js" %}"></script>
+{% endblock %}

@@ -1,0 +1,82 @@
+/*
+    Author: JAshMe
+    CSE, MNNIT Allahabad
+*/
+
+#head-row{
+    background: black url('images/background_strip.jpg') repeat;
+    color: #e9e9e9;
+
+
+}
+#head-card{
+    background: black url('images/background_strip.jpg') repeat;
+    border: none;
+
+}
+#head{
+    font-family: 'Pacifico',cursive;
+    -webkit-transition: all 200ms ease;
+    -moz-transition: all 200ms ease;
+    -o-transition: all 200ms ease;
+    transition: all 200ms ease;
+}
+#head-container{
+    -webkit-transition: all 200ms ease;
+    -moz-transition: all 200ms ease;
+    -o-transition: all 200ms ease;
+    transition: all 200ms ease;
+}
+.web-heading{
+    font-size:50px;
+    color: #e9e9e9;
+}
+a:hover{
+    text-decoration: none; !important;
+    outline: none; !important;
+}
+.web-heading:hover{
+    color: white;
+}
+#off-div{
+    -webkit-transition: all 200ms ease;
+    -moz-transition: all 200ms ease;
+    -o-transition: all 200ms ease;
+    transition: all 200ms ease;
+}
+#logo{
+    -webkit-transition: all 200ms ease;
+    -moz-transition: all 200ms ease;
+    -o-transition: all 200ms ease;
+    transition: all 200ms ease;
+}
+.logoClass{
+    /*border-image: url('images/background_strip.jpg');*/
+    width:150%;
+}
+#sub-head{
+    font-family: 'Cookie',cursive;
+     -webkit-transition: all 200ms ease;
+    -moz-transition: all 200ms ease;
+    -o-transition: all 200ms ease;
+    transition: all 200ms ease;
+}
+.web-subheading{
+    font-size: 30px;
+    margin-top:10px;
+}
+.small-head{
+    font-size:30px;
+}
+.small-subhead{
+    font-size:20px;
+}
+.small-logo{
+    width: 90%;
+}
+.footer-row,.footer{
+    background: url("images/background_strip.jpg") repeat;
+    color: #e9e9e9;
+    border: none;
+
+}

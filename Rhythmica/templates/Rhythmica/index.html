@@ -1,0 +1,67 @@
+<!--
+    Author: JAshMe
+    CSE, MNNIT Allahabad
+ -->
+
+{% extends "Rhythmica/base_index.html" %}
+
+{% block addLinks %}
+    {% load staticfiles %}
+    <link rel="stylesheet" type="text/css" href="{% static "Rhythmica/index.css" %}" />
+{% endblock %}
+
+{% block body %}
+    <div class="row home-stripe" id="intro">
+            <div class="col-md-3">
+                <img class="stripe-img" src="{% static 'Rhythmica/images/stripe1small.jpg' %}" alt="Piano-Picture">
+            </div>
+            <div class="col-md-9">
+                <div>
+                    <div class="card-body heading">
+                        Anytime, Anywhere !!
+                    </div>
+                    <p class="content">
+                        Ever wondered how it would feel if you could here your favourite songs anytime anywhere??
+                        <br>Well, its possible now!!
+                        <br>Here, you can store all your favorite songs and listen to them whenever you like!!
+                    </p>
+                </div>
+            </div>
+        </div>
+    <div class="row home-stripe" id="todo">
+            <div class="col-md-9">
+                <div>
+                    <div class="card-body heading">
+                        Upload, Listen, Enjoy!!
+                    </div>
+                    <p class="content">
+                         Just Log in to your Account and upload your favourite album.<br>
+                         Each album would provide you facility to upload the songs.<br>
+                         Upload from ANY device and play them ANYWHERE!<br>
+                    </p>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <img class="stripe-img" id="gramo" src="{% static 'Rhythmica/images/logo_big.jpg' %}" alt="Piano-Picture">
+            </div>
+        </div>
+{% endblock %}
+
+
+{% block button %}
+    <div class="col-md-4" id="btn-col">
+        <div class="card" id="btn-container">
+            <div class="card-body">
+                <div class="row">
+                    <a href="{% url "Rhythmica:Profile:loginPage" status='0' %}" class="btn btn-dark offset-md-2 col-md-8 main-btn login-ini-btn" id="login-btn">Login</a>
+                    <a href="{% url "Rhythmica:Profile:signUpPage" %}" class="btn btn-dark offset-md-2 col-md-8 main-btn signup-ini-btn" id="signup-btn">Sign Up</a>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+{% load staticfiles %}
+
+{% block javascript %}
+    <script src="{% static "Rhythmica/scripts/scroll_head.js" %}"></script>
+{% endblock %}

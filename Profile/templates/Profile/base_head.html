@@ -1,0 +1,93 @@
+<!--
+    Author: JAshMe
+    CSE, MNNIT Allahabad
+ -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}Welcome to Rhythmica{% endblock %}</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    {% load staticfiles %}
+
+    <!--Google Fonts-->
+   <link href="https://fonts.googleapis.com/css?family=Cairo|Cookie|Pacifico|Quicksand:500|Poiret+One|Nunito" rel="stylesheet">
+{#    <!-- Latest compiled and minified CSS -->#}
+{#    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">#}
+{##}
+{#    <!-- jQuery library -->#}
+{#    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>#}
+{##}
+{#    <!-- Latest compiled JavaScript -->#}
+{#    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>#}
+
+
+    <!--For Development Purposes-->
+    <link rel="stylesheet" type="text/css" href="{% static "Rhythmica/lib/bootstrap/css/bootstrap.min.css"%}">
+    <script src="https://use.fontawesome.com/2abadc0e23.js"></script>
+    <script type="text/javascript" src="{% static 'Rhythmica/lib/jquery-3.2.1.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'Rhythmica/lib/bootstrap/js/bootstrap.min.js' %}"></script>
+
+    <link rel="stylesheet" type="text/css" href="{% static 'Profile/base_head.css' %}">
+    {% block addLinks %}
+
+    {% endblock %}
+
+
+
+</head>
+<body>
+    <div class="container-fluid">
+        <div class="row fixed-top" id="head-row">
+            <div class="col-12">
+                <div class="row">
+                    <div class="offset-md-3 col-md-5" align="center" id="off-div">
+                        <div class="card" id="head-card">
+                            <div class="card-body">
+                                <div class="row">
+                                    <div class="col-md-9" id="head-container" align="center">
+                                        <a href="{% url "Rhythmica:homePage" %}">
+                                            <div class="col-md-12 web-heading" id="head">
+                                                Rhythmica
+                                            </div>
+                                        </a>
+                                        <div class="col-md-12 web-subheading" id="sub-head">
+                                            Follow your music everywhere...
+                                        </div>
+                                    </div>
+                                    <div class="col-md-3 web-logo">
+                                        <a href="{% url "Rhythmica:homePage" %}"><img id="logo" class="logoClass" src="{% static 'Rhythmica/images/logo1.jpg' %}"></a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    {% block button %}
+                        {# whatever buttons you want to make #}
+                    {% endblock %}
+                </div>
+            </div>
+        </div>
+        {% block body %}
+                {# Enter the content of web page here #}
+        {% endblock %}
+    </div>
+    <div class="row footer-row">
+        <div class="offset-md-3 col-md-6 footer" align="center">
+            <div class="card footer">
+                <div class="card-body ">
+                    <p>&copy; Rhythmica 2018, All Rights Reserved.<br>
+                    Designed and Developed by: JAshMe
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
+
+{% block javascript %}
+    {# any js code or its links #}
+{% endblock %}
+
+

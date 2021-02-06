@@ -1,0 +1,101 @@
+/*
+    Author: JAshMe
+    CSE, MNNIT Allahabad
+*/
+body{
+    background: black url("images/background_new.jpg");
+    background-size: cover;
+    font-family: 'Cairo',sans-serif;
+}
+#head{
+    font-family: 'Pacifico',cursive;
+     -webkit-transition: none;
+    -moz-transition: none;
+    -o-transition: none;
+    transition: none;
+}
+#head-container{
+    -webkit-transition: none;
+    -moz-transition: none;
+    -o-transition: none;
+    transition: none;
+}
+#off-div{
+     -webkit-transition: none;
+    -moz-transition: none;
+    -o-transition: none;
+    transition: none;
+}
+#logo{
+     -webkit-transition: none;
+    -moz-transition: none;
+    -o-transition: none;
+    transition: none;
+}
+.web-heading{
+    font-size: 30px;
+    margin-top: 20px;
+    margin-left: 10%;
+}
+
+#logo{
+    width: 80%;
+    margin-left: -100%;
+}
+#sub-head{
+    display: none;
+}
+#heading-container{
+    background: black url("images/background_strip.jpg") repeat;
+    border: none;
+}
+#heading{
+    font-size: 60px;
+    font-family: 'Poiret One', sans-serif;
+}
+#login-container{
+    margin-top: 180px;
+    margin-bottom: 50px;
+}
+
+#login-header{
+    font-size: 20px;
+}
+input[type=checkbox]{
+    margin-left: 10px;
+}
+#login,#register{
+    background-color: #c8cbcf;
+}
+#login:hover,#register:hover{
+    background-color: black;
+    color: white;
+}
+.error-panel{
+    background-color: #efa2a9;
+    color: #c82333;
+    border-radius: 5px;
+    text-align: center;
+    margin-bottom: 20px;
+}
+.success-panel{
+    background: #b1dfbb;
+    color: #1c7430;
+    border-radius: 5px;
+    text-align: center;
+    margin-bottom: 20px;
+    animation-name: fadeOut;
+    animation-duration: 4s;
+    animation-fill-mode: forwards;
+    animation-timing-function: linear;
+}
+#login-msg{
+    animation-name: fadeOut;
+    animation-duration: 5s;
+    animation-fill-mode: forwards;
+}
+
+@keyframes fadeOut {
+    from {opacity: 1;}
+    to {opacity: 0;}
+}
